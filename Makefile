@@ -11,7 +11,7 @@ PNR_OUT  := $(TOP).txt
 BIT      := $(TOP).bit
 SRCS      := $(filter-out $(NETLIST_V), $(ALL_V))
 
-.PHONY: all synth pnr pack flash clean
+.PHONY: all synth pnr pack flash nvflash clean
 
 all: $(BIT)
 
@@ -39,7 +39,7 @@ $(BIT): $(PNR_OUT)
 
 pack: $(BIT)
 
-permflash: $(BIT)
+nvflash: $(BIT)
 	openFPGALoader -b gatemate_evb_jtag --index-chain 0 --cable dirtyJtag --write-flash $(BIT)
 
 flash: $(BIT)
